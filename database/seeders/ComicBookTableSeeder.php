@@ -27,17 +27,9 @@ class ComicBookTableSeeder extends Seeder
             $newBook->sale_date = $comicBook['sale_date'];
             $newBook->type = $comicBook['type'];
             
-            foreach ($comicBook['artists'] as $artist) {
-                
-                $newBook->artists .= $artist;
-            
-            }
+            $newBook->artists = implode(", ", $comicBook['artists']);
 
-            foreach ($comicBook['writers'] as $writer) {
-                
-                $newBook->writers .= $writer;
-            
-            };
+            $newBook->writers = implode(", ", $comicBook['writers']);
 
             $newBook->save();
         }

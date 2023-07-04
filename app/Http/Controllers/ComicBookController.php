@@ -15,8 +15,11 @@ class ComicBookController extends Controller
     public function index()
     {
         $comicBooks = ComicBook::all();
+        $navElements = config('store.navbarElements');
+        $movies = config('comics');
+        $infoList = config('store.infoList');
 
-        return view('comicbook', compact('comicBooks'));
+        return view('comicbook.index', compact('comicBooks', 'navElements', 'movies', 'infoList'));
     }
 
     /**
@@ -48,7 +51,13 @@ class ComicBookController extends Controller
      */
     public function show($id)
     {
-        //
+        $comicBook = ComicBook::findOrFail($id);
+
+        $navElements = config('store.navbarElements');
+        $movies = config('comics');
+        $infoList = config('store.infoList');
+
+        return view('comicbook.show', compact('comicBook', 'navElements', 'movies', 'infoList'));
     }
 
     /**
