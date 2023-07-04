@@ -29,7 +29,11 @@ class ComicBookController extends Controller
      */
     public function create()
     {
-        //
+        $navElements = config('store.navbarElements');
+        $movies = config('comics');
+        $infoList = config('store.infoList');
+
+        return view('comicbook.create', compact('navElements', 'movies', 'infoList'));
     }
 
     /**
@@ -40,7 +44,24 @@ class ComicBookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $newBook = new ComicBook();
+        $newBook->title = $request['title'];
+        $newBook->description = $request['description'];
+        $newBook->thumb = $request['thumb'];
+        $newBook->price = $request['price'];
+        $newBook->series = $request['series']; 
+        $newBook->sale_date = $request['sale_date'];
+        $newBook->type = $request['type'];
+        
+        $newBook->artists = $request['artists'];
+
+        $newBook->writers = $request['writers'];
+
+        $newBook->save();
+
+        return redirect()->route('comicbook.show', $newBook->id);
+
     }
 
     /**

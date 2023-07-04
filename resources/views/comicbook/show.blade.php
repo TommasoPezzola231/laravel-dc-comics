@@ -8,6 +8,10 @@
             <img src="{{ $comicBook->thumb }}">
         </div>
 
+        <div class="my-2 pe-5">
+            {{ $comicBook->description }}
+        </div>
+
         <div class="d-flex">
             <div class="col-1">
                 Attori:
@@ -34,7 +38,7 @@
             <small>{{ $comicBook->price }}</small>
             <button class="btn btn-primary my-3">Acquista</button>
         </div>
-        
+
         <a href="{{ route('comicbook.index') }}">Torna indietro</a>
     </div>
 
