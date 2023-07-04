@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ComicBookController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +21,4 @@ Route::get('/', function () {
     return view('welcome', compact('navElements', 'movies', 'infoList'));
 });
 
-Route::get('/otherpage', function () {
-    $links = config('store.someLinks');
-    return view('other', compact('links'));
-});
+route::resource('comicbook', ComicBookController::class);
