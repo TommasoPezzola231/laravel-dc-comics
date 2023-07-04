@@ -1,0 +1,129 @@
+/* importo bootstrap dalla cartella node_modules usando l'alias settato in vite.config.js */
+@import "~bootstrap/scss/bootstrap";
+
+
+/*******General*********/
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.customBox {
+    width: 1250px;
+    margin: 0 auto;
+}
+
+
+/*******Header*******/
+header {
+    height: 120px;
+    
+    img {
+        height: 80px;
+    }
+    
+    li {
+        &:hover {
+            color: blue;
+            cursor: pointer;
+        }
+    }
+
+    input{
+        border: none;
+        border-bottom: 2px solid blue;
+
+        &:focus-visible{
+            outline: none;
+        }
+    }
+}
+
+
+/********Main*******/
+main{
+
+    .jumbotron {
+        width: 100vw;
+        max-width: 100%;
+        height: 400px;
+        background-image: url(/resources/img/jumbotron.jpg);
+        background-size: cover;
+    }
+
+    #cards{
+        img {
+            width: 100%;
+            aspect-ratio: 1/1;
+        }
+        
+        h6 {
+            margin-top: 1rem;
+            margin-bottom: 3rem;
+            font-weight: bold;
+        }
+    }
+
+    #info{
+        img {
+            width: 50px;
+        }
+        
+        p {
+            margin-bottom: 0;
+        }
+    }
+}
+
+
+
+/*******Footer*********/
+footer {
+    background-image: url(/resources/img/footer-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 400px;
+    
+    h6 {
+    color: white;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    white-space: nowrap;
+    font-size: 1.5rem;
+    }
+
+    a {
+        color: gray !important;
+
+        &:hover {
+            color: white !important;
+            cursor: pointer;
+        }
+    }
+
+    img {
+        height: 400px
+    }
+
+    .secondSection {
+        background-color: #303030;
+        
+        button {
+            color: white;
+            border: 2px solid cornflowerblue;
+            background-color: transparent;
+        }
+        
+        .social>div {
+            color: cornflowerblue;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        img {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    }
+}
