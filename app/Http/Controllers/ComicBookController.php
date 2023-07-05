@@ -70,7 +70,7 @@ class ComicBookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(ComicBook $comicBook)
+    public function show(ComicBook $comicbook)
     {
         // $comicBook = ComicBook::findOrFail($id);
 
@@ -78,7 +78,7 @@ class ComicBookController extends Controller
         $movies = config('comics');
         $infoList = config('store.infoList');
 
-        return view('comicbook.show', compact('comicBook', 'navElements', 'movies', 'infoList'));
+        return view('comicbook.show', compact('comicbook', 'navElements', 'movies', 'infoList'));
     }
 
     /**
@@ -87,15 +87,14 @@ class ComicBookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ComicBook $comicbook)
     {
-        $comicBook = ComicBook::findOrFail($id);
 
         $navElements = config('store.navbarElements');
         $movies = config('comics');
         $infoList = config('store.infoList');
 
-        return view('comicbook.edit', compact('comicBook', 'navElements', 'movies', 'infoList'));
+        return view('comicbook.edit', compact('comicbook', 'navElements', 'movies', 'infoList'));
     }
 
     /**
@@ -105,26 +104,24 @@ class ComicBookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ComicBook $comicbook)
     {
 
-        $comicBookUpdate = ComicBook::findOrFail($id);
-
-        $comicBookUpdate->title = $request['title'];
-        $comicBookUpdate->description = $request['description'];
-        $comicBookUpdate->thumb = $request['thumb'];
-        $comicBookUpdate->price = $request['price'];
-        $comicBookUpdate->series = $request['series']; 
-        $comicBookUpdate->sale_date = $request['sale_date'];
-        $comicBookUpdate->type = $request['type'];
+        $comicbook->title = $request['title'];
+        $comicbook->description = $request['description'];
+        $comicbook->thumb = $request['thumb'];
+        $comicbook->price = $request['price'];
+        $comicbook->series = $request['series']; 
+        $comicbook->sale_date = $request['sale_date'];
+        $comicbook->type = $request['type'];
         
-        $comicBookUpdate->artists = $request['artists'];
+        $comicbook->artists = $request['artists'];
 
-        $comicBookUpdate->writers = $request['writers'];
+        $comicbook->writers = $request['writers'];
 
-        $comicBookUpdate->update();
+        $comicbook->update();
 
-        return redirect()->route('comicbook.show', $comicBookUpdate->id);
+        return redirect()->route('comicbook.show', $comicbook->id);
 
     }
 
@@ -134,10 +131,9 @@ class ComicBookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ComicBook $comicbook)
     {
-        $comicBook = ComicBook::findOrFail($id);
-        $comicBook->delete();
+        $comicbook->delete();
         return redirect()->route('comicbook.index');
     }
 }
