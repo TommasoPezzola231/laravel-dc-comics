@@ -23,7 +23,7 @@
             <input class="form-control" type="text" name="series">
 
             <label for="sale_date">Data pubblicazione</label>
-            <input class="form-control" type="text" name="sale_date">
+            <input class="form-control" type="date" name="sale_date">
             
             <label for="type">Tipo</label>
             <input class="form-control" type="text" name="type">

@@ -6,19 +6,23 @@
 
         <div class="jumbotron"></div>
 
-        <section id="cards" class="customBox d-flex flex-wrap text-white pt-5 position-relative">
-            <h4 class="py-1 px-3 text-white bg-primary position-absolute top-0 start-0 translate-middle ms-5">CURRENT SERIES</h4>
+        <section id="cards">
+            <a href="{{ route('comicbook.index') }}">
+                <div class="customBox d-flex flex-wrap text-white pt-5 position-relative">
+                    <h4 class="py-1 px-3 text-white bg-primary position-absolute top-0 start-0 translate-middle ms-5">CURRENT SERIES</h4>
 
-            @foreach ($movies as $movie)
-                
-                <div class="col-2 p-2">
-                    <img src="{{ $movie['thumb'] }}">
-                    <h6>{{ $movie['series'] }}</h6>
+                    @foreach ($movies as $movie)
+                        
+                        <div class="col-2 p-2">
+                            <img src="{{ $movie['thumb'] }}">
+                            <h6>{{ $movie['series'] }}</h6>
+                        </div>
+
+                    @endforeach
+
+                    <button class="align-self-center py-1 px-5 text-white bg-primary mx-auto mb-4"> Load More </button>
                 </div>
-
-            @endforeach
-
-            <button class="align-self-center py-1 px-5 text-white bg-primary mx-auto mb-4"> Load More </button>
+            </a>
         </section>
 
         <section id="info" class="bg-primary text-white">

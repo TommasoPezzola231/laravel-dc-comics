@@ -89,7 +89,13 @@ class ComicBookController extends Controller
      */
     public function edit($id)
     {
-        //
+        $comicBook = ComicBook::findOrFail($id);
+
+        $navElements = config('store.navbarElements');
+        $movies = config('comics');
+        $infoList = config('store.infoList');
+
+        return view('comicbook.edit', compact('comicBook', 'navElements', 'movies', 'infoList'));
     }
 
     /**
@@ -101,7 +107,25 @@ class ComicBookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $comicBookUpdate = ComicBook::findOrFail($id);
+
+        $comicBookUpdate->title = $request['title'];
+        $comicBookUpdate->description = $request['description'];
+        $comicBookUpdate->thumb = $request['thumb'];
+        $comicBookUpdate->price = $request['price'];
+        $comicBookUpdate->series = $request['series']; 
+        $comicBookUpdate->sale_date = $request['sale_date'];
+        $comicBookUpdate->type = $request['type'];
+        
+        $comicBookUpdate->artists = $request['artists'];
+
+        $comicBookUpdate->writers = $request['writers'];
+
+        $comicBookUpdate->update();
+
+        return redirect()->route('comicbook.show', $comicBookUpdate->id);
+
     }
 
     /**
@@ -112,6 +136,8 @@ class ComicBookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comicBook = ComicBook::findOrFail($id);
+        $comicBook->delete();
+        return redirect()->route('comicbook.index');
     }
 }
