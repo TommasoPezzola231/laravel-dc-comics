@@ -70,9 +70,9 @@ class ComicBookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(ComicBook $comicBook)
     {
-        $comicBook = ComicBook::findOrFail($id);
+        // $comicBook = ComicBook::findOrFail($id);
 
         $navElements = config('store.navbarElements');
         $movies = config('comics');
