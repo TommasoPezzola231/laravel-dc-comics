@@ -10,31 +10,58 @@
             @method('PUT')
             
             <label for="title">Titolo</label>
-            <input class="form-control" type="text" name="title" value="{{ $comicbook->title }}">
+            @error('title')
+                <div class="bg-danger-subtle rounded">{{$message}}</div>  
+            @enderror
+            <input class="form-control" type="text" name="title" value="{{ old("title") ?? $comicbook->title}}">
             
             <label for="description">Descrizione</label>
-            <input class="form-control" type="text" name="description" value="{{ $comicbook->description }}">
+            @error('description')
+                <div class="bg-danger-subtle rounded">{{$message}}</div>  
+            @enderror
+            <input class="form-control" type="text" name="description" value="{{ old("description") ?? $comicbook->description}}">
             
             <label for="thumb">Link immagine</label>
-            <input class="form-control" type="text" name="thumb" value="{{ $comicbook->thumb }}">
+            @error('thumb')
+                <div class="bg-danger-subtle rounded">{{$message}}</div>  
+            @enderror
+            <input class="form-control" type="text" name="thumb" value="{{ old("thumb") ?? $comicbook->thumb}}">
             
             <label for="price">Prezzo</label>
-            <input class="form-control" type="text" name="price" value="{{ $comicbook->price }}">
+            @error('price')
+                <div class="bg-danger-subtle rounded">{{$message}}</div>  
+            @enderror
+            <input class="form-control" type="text" name="price" value="{{ old("price") ?? $comicbook->price}}">
             
             <label for="series">Serie</label>
-            <input class="form-control" type="text" name="series" value="{{ $comicbook->series }}">
+            @error('series')
+                <div class="bg-danger-subtle rounded">{{$message}}</div>  
+            @enderror
+            <input class="form-control" type="text" name="series" value="{{ old("series") ?? $comicbook->series}}">
 
             <label for="sale_date">Data pubblicazione</label>
-            <input class="form-control" type="date" name="sale_date" value="{{ $comicbook->sale_date }}">
+            @error('sale_date')
+                <div class="bg-danger-subtle rounded">{{$message}}</div>  
+            @enderror
+            <input class="form-control" type="date" name="sale_date" value="{{ old("sale_date") ?? $comicbook->sale_date}}">
             
             <label for="type">Tipo</label>
-            <input class="form-control" type="text" name="type" value="{{ $comicbook->type }}">
+            @error('type')
+                <div class="bg-danger-subtle rounded">{{$message}}</div>  
+            @enderror
+            <input class="form-control" type="text" name="type" value="{{ old("type") ?? $comicbook->type}}">
             
             <label for="artists">Artists</label>
-            <input class="form-control" type="text" name="artists" value="{{ $comicbook->artists }}">
+            @error('artists')
+                <div class="bg-danger-subtle rounded">{{$message}}</div>  
+            @enderror
+            <input class="form-control" type="text" name="artists" value="{{ old("artists") ?? $comicbook->artists}}">
             
             <label for="writers">Scritto da:</label>
-            <input class="form-control" type="text" name="writers" value="{{ $comicbook->writers }}">
+            @error('writers')
+                <div class="bg-danger-subtle rounded">{{$message}}</div>  
+            @enderror
+            <input class="form-control" type="text" name="writers" value="{{ old("writers") ?? $comicbook->writers}}">
 
             <button class="btn btn-secondary my-3" type="submit">Aggiorna</button>
             

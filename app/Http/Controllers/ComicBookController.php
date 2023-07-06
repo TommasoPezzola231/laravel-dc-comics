@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ComicBook;
+use Illuminate\Support\Facades\Validator;
 
 class ComicBookController extends Controller
 {
@@ -44,6 +45,9 @@ class ComicBookController extends Controller
      */
     public function store(Request $request)
     {
+        // $request = $request->except([':token', '_method']);
+        
+        $this->checkRequest($request);
 
         $newBook = new ComicBook();
         $newBook->title = $request['title'];
@@ -106,6 +110,7 @@ class ComicBookController extends Controller
      */
     public function update(Request $request, ComicBook $comicbook)
     {
+        $this->checkRequest($request);
 
         $comicbook->title = $request['title'];
         $comicbook->description = $request['description'];
@@ -135,5 +140,49 @@ class ComicBookController extends Controller
     {
         $comicbook->delete();
         return redirect()->route('comicbook.index');
+    }
+
+    private function checkRequest($request) {
+
+        $check = Validator::make($request->all(), [
+            'title' => 'required|min:5|max:50',
+            'description' => 'required',
+            'thumb' => 'required|max:255',
+            'price' => 'required',
+            'series' => 'required',
+            'sale_date' => 'required|date',
+            'type' => 'required|min:3|max:30',
+            'artists' => 'required|min:5|max:255',
+            'writers' => 'required|min:5|max:255',
+        ], [
+            "title.required" => "Il Titolo è obbligatorio!",
+            "title.min" => "Devi inserire almeno :min Caratteri",
+            "title.max" => "Puoi inserire un massimo di :max caratteri",
+
+            "description.required" => "La Descrizione è obbligatoria!",
+
+            "thumb.required" => "Il Link dell'immagine è obbligatorio!",
+            "thumb.max" => "Puoi inserire un massimo di :max caratteri",
+
+            "price.required" => "Il Prezzo è obbligatorio!",
+
+            "series.required" => "La Serie è obbligatoria!",
+
+            "sale_date.required" => "La Data è obbligatoria",
+
+            "type.required" => "Il Tipo è obbligatorio!",
+            "type.min" => "Devi inserire almeno :min Caratteri",
+            "type.max" => "Puoi inserire un massimo di :max caratteri",
+
+            "artists.required" => "Gli Artisti sono obbligatori",
+            "artists.min" => "Devi inserire almeno :min Caratteri",
+            "artists.max" => "Puoi inserire un massimo di :max caratteri",
+
+            "writers.required" => "Gli Scrittori sono obbligatori!",
+            "writers.min" => "Devi inserire almeno :min Caratteri",
+            "writers.max" => "Puoi inserire un massimo di :max caratteri",
+        ])->validate();
+
+        return $check;
     }
 }
